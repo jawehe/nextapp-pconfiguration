@@ -1,44 +1,49 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk as SpaceGrotesk } from "next/font/google";
 import "./globals.css";
+import React, { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 
-//import fonts
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display:"swap"
+  display: "swap",
 });
 
-const spaceGroTask = Space_Grotesk({
+const spaceGroTesk = SpaceGrotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
-  display:"swap"
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Dev Jawaher",
-  description:  "A community-driven platform for asking and answering programming questions Get help, share knowledge , and collaborate with developers from around the world",
+  title: "DevAla",
+  description:
+    "A community-driven platform for asking and answering programming questions Get help, share knowledge , and collaborate with developers from around the world",
   icons: {
-    icon: "/assets/images/site-logo.svg",
+    icon: "/images/site-logo.svg",
   },
 };
+const Layout = async ({ children }: { children: ReactNode }) => {
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body 
-        className={`${inter.variable} ${spaceGroTask.variable} antialiased`}  >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-         
-        {children}
-        </ThemeProvider>
-        
-      </body>
+        <body
+          className={`${inter.variable} ${spaceGroTesk.variable} antialiased`}
+        >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+      
+        </body>
     </html>
   );
-}
+};
+
+export default Layout;
