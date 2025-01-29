@@ -1,7 +1,7 @@
 import Navbar from '@/components/navigation/navbar'
 import React, { ReactNode } from 'react'
 
-const RootLayout = ({children}:{children :ReactNode}) => {
+const AuthLayout = ({children}:{children :ReactNode}) => {
   return (
     <main>
          <Navbar />
@@ -10,4 +10,4 @@ const RootLayout = ({children}:{children :ReactNode}) => {
   )
 }
 
-export default RootLayout
+export default AuthLayout

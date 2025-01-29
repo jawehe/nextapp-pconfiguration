@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk as SpaceGrotesk } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 import React, { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
-
+import { Toaster } from "@/components/ui/toaster";
+import { auth } from "@/auth";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,7 +20,7 @@ const spaceGroTesk = SpaceGrotesk({
 });
 
 export const metadata: Metadata = {
-  title: "DevAla",
+  title: "DevJawaher",
   description:
     "A community-driven platform for asking and answering programming questions Get help, share knowledge , and collaborate with developers from around the world",
   icons: {
@@ -26,9 +28,10 @@ export const metadata: Metadata = {
   },
 };
 const Layout = async ({ children }: { children: ReactNode }) => {
-
+const session =await auth()
   return (
     <html lang="en" suppressHydrationWarning>
+      <SessionProvider session={session}>
         <body
           className={`${inter.variable} ${spaceGroTesk.variable} antialiased`}
         >
@@ -40,8 +43,9 @@ const Layout = async ({ children }: { children: ReactNode }) => {
           >
             {children}
           </ThemeProvider>
-      
+          <Toaster />
         </body>
+        </SessionProvider>
     </html>
   );
 };
